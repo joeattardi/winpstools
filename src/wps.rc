@@ -1,0 +1,11 @@
+#include "wps_resources.h"
+
+STRINGTABLE DISCARDABLE
+{
+    COPYRIGHT_STATEMENT, 
+        "wps %s (%s), Copyright (C) 2005-2006 by Joe Attardi [jattardi@gmail.com]\n" \
+        "Reports information on running Windows processes\n\n" \
+        "wps is free software distributed under the GNU General Public License.\n\n"    
+
+    
+}

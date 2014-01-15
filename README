@@ -1,0 +1,134 @@
++---------------------------------------------------------------------------+
+|                       Windows Process Tools v1.5.1                        |
+|                            README/USER'S GUIDE                            |
+|               (C) 2004-2006 Joe Attardi <jattardi@gmail.com>              |
++---------------------------------------------------------------------------+
+CONTENTS
+
+1. INTRODUCTION
+2. USING THE TOOLS
+     2.1 FINDING RUNNING PROCESSES WITH WPS
+     2.2 TERMINATING PROCESSES WITH WKILL
+     2.3 EXAMPLE INVOCATIONS
+3. KNOWN ISSUES
+4. WHAT'S NEW
+
+1. INTRODUCTION
+-------------------------------------------------------------------------------
+Welcome, and thanks for trying out WinPSTools.
+
+WinPSTools is a set of useful command-line utilities for Microsoft Windows that
+allows a Windows user to list, find and terminate running processes.
+
+WinPSTools consists of two programs: wps and wkill.
+
+WinPSTools is free software distributed under the GNU General Public License
+(GPL). See the included LICENSE file for more information.
+
+-------------------------------------------------------------------------------
+2. USING THE TOOLS
+-------------------------------------------------------------------------------
+WinPSTools 1.5 consists of two command-line applications. Their use is outlined
+in the following subsections.
+
+-------------------------------------------------------------------------------
+2.1 FINDING RUNNING PROCESSES WITH WPS
+-------------------------------------------------------------------------------
+The utility to find a running process is wps. Running wps on its own, 
+with no command-line arguments, will display a list of all processes
+running on your Windows system. A few headings will be displayed, and
+these are:
+     PID      The process ID of the process.
+     PPID     The PID of the process's parent.
+     PRI      The priority class of the process.
+     COMMAND  The name of the running program.
+If you have used the ps command on UNIX, you will notice that this output
+is in the same format as the output of ps.
+
+There are several command-line options available for wps:
+     -?         Shows a brief help screen with a listing of all options.
+     -e <regex> Only displays processes whose names match a given regular 
+                expression. By default, the regular expression is 
+                case-sensitive.
+     -n <name>  Only displays processes whose name matches a given process
+                name. By default, the name is case-sensitive.
+     -i         Specifying this option with -e or -n causes the regular
+                expression or name matching to be case-insensitive.
+     -p         Only displays the process ID (PID), omitting all other
+                information. When used with the -e option, this behaves
+                like the 'pgrep' command on UNIX systems.
+     -v         Shows version and copyright information for wps.
+            
+    
+-------------------------------------------------------------------------------
+2.2 TERMINATING PROCESSES WITH WKILL
+-------------------------------------------------------------------------------
+The other utility in WinPSTools is wkill. To terminate a single process,
+you can find its process ID (PID) with wps as described above, or you 
+can search for processes to terminate based on their name using command-
+line options similar to wps.
+
+There are three ways to terminate processes with wkill on the command line:
+     wkill <process ID>    Terminates the process with the given PID, if
+                           such a process exists.
+     wkill -n <name>       Terminates all processes with the given name.
+     wkill -e <regex>      Terminates all processes whose name matches
+                           the given regular expression.
+If using the -n or -e options, the comparison is case-sensitive by default.
+To make these comparisons case-insensitive, you can specify the -i option.
+
+-------------------------------------------------------------------------------
+2.3 EXAMPLE INVOCATIONS
+-------------------------------------------------------------------------------
+Finding a process by name:
+C:\>wps -n notepad
+    PID     PPID    PRI     COMMAND
+    2188    1372    8       notepad.exe
+    992     1372    8       notepad.exe
+    1928    1372    8       notepad.exe
+    3636    1372    8       notepad.exe
+
+Finding a process by regular expression:
+C:\>wps -e "^note"
+     PID     PPID    PRI     COMMAND
+    2188    1372    8       notepad.exe
+    992     1372    8       notepad.exe
+    1928    1372    8       notepad.exe
+    3636    1372    8       notepad.exe    
+
+Terminating a specified process ID:
+C:\>wkill 2188
+PID 2188 terminated successfully.    
+
+Terminating a process by name:
+C:\>wkill -n notepad
+PID 992 (notepad.exe) terminated successfully.    
+PID 1928 (notepad.exe) terminated successfully.   
+PID 3636 (notepad.exe) terminated successfully.    
+    
+-------------------------------------------------------------------------------
+3. KNOWN ISSUES
+-------------------------------------------------------------------------------
+Throughout my testing I have not found any issues yet. Please report any
+bugs or issues to me at jattardi@gmail.com, and include 'WinPsTools' in
+the subject line.
+
+-------------------------------------------------------------------------------
+4. WHAT'S NEW
+-------------------------------------------------------------------------------
+* WinPSTools v1.5.1 [October 26, 2006]
+    - Fixed a bug where the program would crash when using certain combinations
+      of command-line arguments.
+
+* WinPSTools v1.5 [January 10, 2005]
+    - Added support to search for process names using POSIX style regular 
+      expressions with a new command-line option, -e. This support is thanks to 
+      a Windows port of the GNU Regex library by George Carrette.
+      
+    - Due to the new regular expression support, the -n option now only
+      matches whole names and not substrings as in previous versions. A
+      reminder about this is included in the help output.
+      
+-------------------------------------------------------------------------------
+This document was last updated on Friday, October 26, 2006.
+-------------------------------------------------------------------------------      

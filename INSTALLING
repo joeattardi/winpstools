@@ -1,0 +1,75 @@
++---------------------------------------------------------------------------+
+|                       Windows Process Tools v1.5.1                        |
+|                           INSTALLATION GUIDE                              |
+|               (C) 2004-2006 Joe Attardi <jattardi@gmail.com>              |
++---------------------------------------------------------------------------+
+CONTENTS
+
+1. INSTALLING THE BINARY DISTRIBUTION
+2. BUILDING THE SOURCE CODE
+    2.1 Requirements
+    2.2 Building the programs
+	2.3 Installing the programs
+    	 
+-------------------------------------------------------------------------------
+1. INSTALLING THE BINARY DISTRIBUTION
+-------------------------------------------------------------------------------
+The binary distribution comes in a file called winpstools-1.5.zip. 
+The binary executables, wps.exe and wkill.exe, as well as the shared DLL,
+are included in this file. Simply extract the ZIP file to a directory of 
+your choice.
+
+It is recommended to put these files in a location on your PATH. To see
+your current path, from the command prompt type ECHO %PATH% .
+
+-------------------------------------------------------------------------------
+2. BUILDING FROM SOURCE
+-------------------------------------------------------------------------------
+Pursuant to the GPL, and the spirit of Open Source, you can also download and
+build WinPSTools from its source code. WinPSTools is written in the C
+programming language. Before you can build from source, however, there are
+a few other free software packages you need.
+
+The current source distribution filename is winpstools-1.5-src.zip.
+-------------------------------------------------------------------------------
+2.1 Requirements
+-------------------------------------------------------------------------------
+To build WinPSTools on a Windows 9x/2000/NT/XP system, you need the following
+in addition to the contents of the source distribution you downloaded:
+
+* MinGW (Minimalist GNU for Windows): MinGW contains Windows ports of the GNU
+Compiler Collection (GCC) and Windows-specific headers and libraries that do
+not have any third-party dependencies.
+
+* GNU make: WinPSTools is built with a Makefile, and you will need GNU make
+to use it. A copy should be provided in MinGW.
+
+-------------------------------------------------------------------------------
+2.2 Building the programs
+-------------------------------------------------------------------------------
+Unzip the source distribution to a directory of your choosing. Once you
+have unzipped the source, go to that directory and open the Makefile in your
+favorite text editor.
+
+There are two variables you must change to fit your environment. Set GCC to
+the full path of your GCC.EXE binary, and set INSTALL_DIR to the directory
+you want WinPSTools to be installed in.
+
+Once you have set these variables, you can initiate the build by typing 'make' 
+(note that GNU make must be in your PATH).
+
+The Makefile will then initiate compilation of all required source files,
+and the result will be:
+  - The two programs, wps.exe and wkill.exe
+  - The shared DLL that both programs depend on
+
+-------------------------------------------------------------------------------
+2.3 Installing the programs
+-------------------------------------------------------------------------------
+After the binaries have been built, type 'make install'. The two programs and
+DLL files will be copied to the directory you specified (INSTALL_DIR in the
+Makefile).
+
+-------------------------------------------------------------------------------
+This document was last updated on Friday, October 26, 2006.
+-------------------------------------------------------------------------------
